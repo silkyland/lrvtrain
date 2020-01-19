@@ -22,9 +22,42 @@ Route::get('/help', "HomeController@help");
 
 route::get("/user/calculator/{num1}/{num2}", "UserController@calculator");
 
-//route::get('/admin', "Admin\\AdminController@dashboard");
-
 route::prefix('/admin')->group(function(){
     route::get('/', "Admin\AdminController@dashboard");
+
+    // user
     route::get('/user', "Admin\UserController@index");
+    route::get('/user/create', "Admin\UserController@create");
+    route::post('/user/add', "Admin\UserController@add");
+    route::get('/user/edit/{id}', "Admin\UserController@edit");
+    route::post('user/update', "Admin\UserController@update");
+    route::get('/user/delete/{id}', "Admin\UserController@delete");
+
+    // category
+    route::get('/category', "Admin\CategoryController@index");
+    route::get('/category/create', "Admin\CategoryController@create");
+    route::post('/category/add', "Admin\CategoryController@add");
+    route::get('/category/edit/{id}', "Admin\CategoryController@edit");
+    route::post('category/update', "Admin\CategoryController@update");
+    route::get('/cagegory/delete/{id}', "Admin\CategoryController@delete");
+
+    // banner
+    route::get('/banner', "Admin\BannerController@index");
+    route::get('/banner/create', "Admin\BannerController@create");
+    route::post('/banner/add', "Admin\BannerController@add");
+    route::get('/banner/edit/{id}', "Admin\BannerController@edit");
+    route::post('banner/update', "Admin\BannerController@update");
+    route::get('/banner/delete/{id}', "Admin\BannerController@delete");
+
+    // Post
+    route::get('/post', "Admin\PostController@index");
+    route::get('/post/create', "Admin\PostController@create");
+    route::post('/post/add', "Admin\PostController@add");
+    route::get('/post/edit/{id}', "Admin\PostController@edit");
+    route::post('post/update', "Admin\PostController@update");
+    route::get('/post/delete/{id}', "Admin\PostController@delete");
+
 });
+
+// เกี่ยวกับการเข้าระบบ
+Auth::routes();

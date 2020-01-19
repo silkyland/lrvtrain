@@ -22,7 +22,7 @@ Route::get('/help', "HomeController@help");
 
 route::get("/user/calculator/{num1}/{num2}", "UserController@calculator");
 
-route::prefix('/admin')->group(function(){
+route::prefix('/admin')->group(function () {
     route::get('/', "Admin\AdminController@dashboard");
 
     // user
@@ -56,8 +56,12 @@ route::prefix('/admin')->group(function(){
     route::get('/post/edit/{id}', "Admin\PostController@edit");
     route::post('post/update', "Admin\PostController@update");
     route::get('/post/delete/{id}', "Admin\PostController@delete");
-
 });
 
 // เกี่ยวกับการเข้าระบบ
 Auth::routes();
+
+Route::get('/logout', function () {
+    auth()->logout();
+    return redirect('/');
+});

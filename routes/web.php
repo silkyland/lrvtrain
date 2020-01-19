@@ -26,4 +26,5 @@ route::get("/user/calculator/{num1}/{num2}", "UserController@calculator");
 
 route::prefix('/admin')->group(function(){
     route::get('/', "Admin\AdminController@dashboard");
+    route::get('/user', "Admin\UserController@index");
 });

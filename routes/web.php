@@ -22,7 +22,7 @@ Route::get('/help', "HomeController@help");
 
 route::get("/user/calculator/{num1}/{num2}", "UserController@calculator");
 
-route::prefix('/admin')->group(function () {
+route::prefix('/admin')->middleware('auth')->group(function () {
     route::get('/', "Admin\AdminController@dashboard");
 
     // user
@@ -64,4 +64,13 @@ Auth::routes();
 Route::get('/logout', function () {
     auth()->logout();
     return redirect('/');
+});
+
+Route::get('/addUser', function () {
+    $user = new \App\User();
+    $user->name = "Bundit Nuntates";
+    $user->email = "bundit@cmru.ac.th";
+    $user->password = bcrypt('1234');
+    $user->save();
+    return $user;
 });
